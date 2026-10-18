@@ -48,6 +48,23 @@ git config --global core.autocrlf true
 > Alternatif: **JetBrains Rider** öğrenciler / ticari olmayan kullanım için ücretsiz ve tamamen D:'ye kurulabilir,
 > ama daha ağır. **Visual Studio Community** önerilmez: büyük kısmı C:'ye kurulur.
 
+## 2a. D:'de çalışma klasörlerini aç (bir kez, yönetici onayıyla)
+
+Bazı bilgisayarlarda D: kökünde normal kullanıcı klasör açamaz (“erişim reddedildi”). Önbellek (`D:\UnityCache`) ve
+projeler (`D:\Dev`) için klasörleri yönetici olarak açıp yalnızca bu ikisinde kendi kullanıcına tam yetki ver.
+Normal PowerShell'de (UAC penceresine **Evet**):
+
+```powershell
+$me = whoami
+Start-Process powershell -Verb RunAs -Wait -ArgumentList "-NoProfile -Command New-Item -ItemType Directory -Force D:\UnityCache\Packages,D:\UnityCache\AssetStore,D:\UnityCache\GiCache,D:\Dev\GameDev | Out-Null; icacls D:\UnityCache /grant '${me}:(OI)(CI)F' /T; icacls D:\Dev /grant '${me}:(OI)(CI)F' /T"
+```
+
+`icacls … (OI)(CI)F`: içindeki dosya ve alt klasörlere de geçen tam yetki. Kontrol (normal pencerede, hatasız bitmeli):
+
+```powershell
+New-Item D:\Dev\GameDev\test.txt -Force; Remove-Item D:\Dev\GameDev\test.txt
+```
+
 ## 2b. Unity önbelleklerini Hub'dan önce D:'ye yönlendir
 
 Unity, ilk projeyi oluştururken paketleri **global önbelleğe** indirir (varsayılan `C:\Users\<ad>\AppData\Local\Unity\cache`,
@@ -55,7 +72,6 @@ Unity, ilk projeyi oluştururken paketleri **global önbelleğe** indirir (varsa
 ayarlıyoruz. PowerShell'de:
 
 ```powershell
-mkdir D:\UnityCache\Packages, D:\UnityCache\AssetStore, D:\UnityCache\GiCache -Force
 setx UPM_CACHE_ROOT "D:\UnityCache\Packages"
 setx ASSETSTORE_CACHE_PATH "D:\UnityCache\AssetStore"
 ```
@@ -100,7 +116,6 @@ Paket ve Asset Store önbellekleri 2b'de ortam değişkeniyle ayarlandı. Kalanl
 ## 6. Depoyu D:'ye klonla
 
 ```powershell
-mkdir D:\Dev\GameDev
 cd D:\Dev\GameDev
 git clone https://github.com/fatihsert41/GD-Lab1.git
 cd GD-Lab1
