@@ -492,7 +492,7 @@ GameObject:
   - component: {fileID: 1377039137}
   - component: {fileID: 1377039136}
   m_Layer: 5
-  m_Name: CorrenctButton
+  m_Name: CorrectButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
