@@ -29,8 +29,8 @@ QUIT (StartMenu'de) oyunu kapatır.
 | -- | ------- | ------------ | ---- |
 | 0 | — | Depo kurulumu: yol haritası, kurulum rehberi, `.gitignore` | — |
 | — | — | Bilgisayar kurulumu D:'de (Unity Hub, Unity 6.3, VS Code, Git) — PR yok | ~1 saat (indirme) |
-| 1 | Part 0 + 1 | Tasarım kararları (`DESIGN.md`), Unity projesi, Canvas + Canvas Scaler, anchor'lar, görseller | 30 dk |
-| 2 | Part 2 | TextMesh Pro, font asset, düğme renkleri, üç sahne | 25 dk |
+| 1 | Part 1 | Unity projesi, Canvas + Canvas Scaler, anchor'lar, görseller | 30 dk |
+| 2 | Part 0 + 2 | Tasarım kararları (`DESIGN.md`), TextMesh Pro, font asset, düğme renkleri, üç sahne | 25 dk |
 | 3 | Part 3 + 4 | `SceneNavigator.cs`, Scene List, START → CORRECT → PLAY AGAIN döngüsü | 25 dk |
 | 4 | Part 5 | CoreGame ekranı (wireframe, Background, GuessText, AttemptText…) | 20 dk |
 | 5 | Part 6 + 7 | Konsol kodunu düğmelere çevirme (`Codebreaker.cs`), tahmini ekranda gösterme | 30 dk |
@@ -40,10 +40,10 @@ QUIT (StartMenu'de) oyunu kapatır.
 
 ### Durum
 
-- [ ] **PR 0** — Depo kurulumu ve yol haritası
-- [ ] **Kurulum** — D:'de Unity Hub + Unity 6000.3.25f1 + VS Code + Git, depo D:'ye klonlandı
-- [ ] **PR 1 — Part 0–1:** `DESIGN.md` dolduruldu; `CipherQuest` projesi; `StartMenu` sahnesi; Canvas Scaler 1920×1080 Scale With Screen Size; StartButton middle-right, CodebreakerFatih bottom-left
-- [ ] **PR 2 — Part 2:** StartText (TMP), font asset (`Assets/Fonts`), düğme Color Tint renkleri; `CoreGame` ve `WinScreen` sahneleri
+- [x] **PR 0** — Depo kurulumu ve yol haritası
+- [x] **Kurulum** — D:'de Unity Hub + Unity 6000.3.25f1 (`D:\UnityCache`) + VS Code + Git, depo `D:\Dev\GameDev\GD-Lab1`
+- [x] **PR 1 — Part 1:** `CipherQuest` projesi; `StartMenu` sahnesi; Canvas Scaler 1920×1080 Scale With Screen Size; StartButton middle-right, CodebreakerFatih bottom-left
+- [ ] **PR 2 — Part 0 + 2:** `DESIGN.md` dolduruldu; StartText (TMP), font asset (`Assets/Fonts`), düğme Color Tint renkleri; `CoreGame` ve `WinScreen` sahneleri
 - [ ] **PR 3 — Part 3–4:** Scene List 0/1/2; `SceneNavigator` (`LoadNextScene`, `LoadStartScene`); tam döngü hatasız
 - [ ] **PR 4 — Part 5:** CoreGame'de Tablo 3'teki 8 öğe, doğru isim ve parent–child
 - [ ] **PR 5 — Part 6–7:** `Codebreaker.cs` (settings/state ayrımı, `OnPressHigher/Lower`), `Gameplay` objesi, ekranda tahmin

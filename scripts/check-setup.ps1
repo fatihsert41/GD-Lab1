@@ -44,10 +44,10 @@ $hub = $hubPaths | Where-Object { Test-Path $_ } | Select-Object -First 1
 Show "Unity Hub" ($null -ne $hub) $(if ($hub) { $hub } else { "D:\Unity\Hub'a kur" })
 if ($hub -like "C:*") { Write-Host "      Hub C:'de. Sorun degil ama Editor'leri mutlaka D:'ye kur." -ForegroundColor Yellow }
 
-$editorRoots = "D:\UnityCache\Editors", "D:\Unity\Editors", "C:\Program Files\Unity\Hub\Editor"
+$editorRoots = "D:\UnityCache", "D:\UnityCache\Editors", "D:\Unity\Editors", "C:\Program Files\Unity\Hub\Editor"
 $found = @()
 foreach ($r in $editorRoots) {
-    if (Test-Path $r) { Get-ChildItem $r -Directory | ForEach-Object { $found += $_.FullName } }
+    if (Test-Path $r) { Get-ChildItem $r -Directory | Where-Object { $_.Name -match "^\d{4}\." } | ForEach-Object { $found += $_.FullName } }
 }
 Show "Unity 6000.3.25f1" (($found | Where-Object { $_ -like "*6000.3.25f1" }).Count -gt 0) ""
 foreach ($f in $found) { Write-Host "      kurulu: $f" }

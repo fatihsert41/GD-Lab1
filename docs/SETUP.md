@@ -8,8 +8,7 @@ D:'de en az **20 GB** boş yer olsun (Unity Editor ~7 GB, indirme ~3 GB, proje +
 ```
 D:\Unity\Hub\         Unity Hub programı (kurulum yönetici olarak yapar)
 D:\UnityCache\        Unity'nin yazdığı her şey (normal kullanıcı yazabilmeli)
-├─ Editors\          Unity Editor sürümleri (6000.3.25f1 buraya)
-├─ Downloads\        Hub'ın indirdiği kurulum dosyaları
+├─ 6000.3.25f1\      Unity Editor (Hub'ın Installs location'ı D:\UnityCache)
 ├─ Packages\         paket önbelleği
 ├─ AssetStore\       Asset Store önbelleği
 └─ GiCache\          ışık (GI) önbelleği
@@ -90,8 +89,8 @@ Kontrol (yeni PowerShell penceresinde): `$env:UPM_CACHE_ROOT` → `D:\UnityCache
 3. Hub'ı aç, Unity hesabınla giriş yap.
    **Lisans:** ⚙ → **Licenses** → **Add** → **Get a free personal license** (Personal, ücretsiz). Lisans olmadan Editor açılmaz.
 4. **Ayarlar (sol alttaki dişli) → Installs**:
-   - **Installs location** → `D:\UnityCache\Editors`
-   - **Downloads location** → `D:\UnityCache\Downloads`
+   - **Installs location** → `D:\UnityCache` (Editor `D:\UnityCache\6000.3.25f1`'e kurulur)
+   - **Downloads location** → `D:\UnityCache` (kurulum dosyası ~4 GB, kurulumdan sonra silinebilir)
 
    Bunu **Editor'ü kurmadan önce** yap; sonradan değiştirmek kurulu sürümleri taşımaz.
 
@@ -100,7 +99,7 @@ Kontrol (yeni PowerShell penceresinde): `$env:UPM_CACHE_ROOT` → `D:\UnityCache
 1. Hub → **Installs → Install Editor**. Listede **6000.3.25f1** yoksa **Archive** sekmesinden ya da
    https://unity.com/releases/editor/archive üzerinden “Unity 6.3” → 6000.3.25f1 → **Install with Hub**.
 2. Modül seçimi:
-   - ☐ **Microsoft Visual Studio Community** → **işaretini kaldır** (C:'ye kurulur, VS Code kullanıyoruz).
+   - ☐ **Microsoft Visual Studio Community** → **işaretini kaldır** (varsayılan işaretli gelir; ~1,7 GB C:'ye kurulur, VS Code kullanıyoruz). Unutulursa kurulum sonunda açılan Visual Studio Installer'ı iptal et.
    - ☑ **Windows Build Support (Mono)** genelde editörle birlikte gelir; Part 10'daki .exe için yeterli.
    - ☐ Android/iOS/WebGL ve **Documentation** gerekmez (yer kazanmak için kapalı kalsın).
 3. Kurulumun bittiğini **Installs** listesinde gör.
