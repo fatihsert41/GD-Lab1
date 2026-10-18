@@ -44,3 +44,7 @@ crashlytics-build.properties
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Proje klasorundeki editor dosyalari
+/*/.vscode/
+UpgradeLog*.htm
