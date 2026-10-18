@@ -1,0 +1,26 @@
+# Satır sonlarını git yönetsin (Windows CRLF / depo LF)
+* text=auto
+
+# Unity sahne ve varlık dosyaları metin olarak kaydedilir (Asset Serialization: Force Text)
+*.unity    text eol=lf
+*.prefab   text eol=lf
+*.asset    text eol=lf
+*.meta     text eol=lf
+*.mat      text eol=lf
+*.anim     text eol=lf
+*.controller text eol=lf
+
+*.cs       text diff=csharp
+
+# İkili dosyalar
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.psd  binary
+*.ttf  binary
+*.otf  binary
+*.wav  binary
+*.mp3  binary
+*.ogg  binary
+*.pdf  binary
+*.zip  binary
