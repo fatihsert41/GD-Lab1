@@ -6,11 +6,13 @@ D:'de en az **20 GB** boş yer olsun (Unity Editor ~7 GB, indirme ~3 GB, proje +
 Önerilen klasör düzeni:
 
 ```
-D:\Unity\
-├─ Hub\              Unity Hub programı
+D:\Unity\Hub\         Unity Hub programı (kurulum yönetici olarak yapar)
+D:\UnityCache\        Unity'nin yazdığı her şey (normal kullanıcı yazabilmeli)
 ├─ Editors\          Unity Editor sürümleri (6000.3.25f1 buraya)
-└─ Downloads\        Hub'ın indirdiği kurulum dosyaları
-D:\UnityCache\       Paket, GI ve Asset Store önbellekleri (normal kullanıcı yazabilmeli)
+├─ Downloads\        Hub'ın indirdiği kurulum dosyaları
+├─ Packages\         paket önbelleği
+├─ AssetStore\       Asset Store önbelleği
+└─ GiCache\          ışık (GI) önbelleği
 D:\Dev\
 └─ GameDev\
    └─ GD-Lab1\       bu depo (klon)
@@ -50,13 +52,12 @@ git config --global core.autocrlf true
 
 ## 2a. D:'de çalışma klasörlerini aç (bir kez, yönetici onayıyla)
 
-Bazı bilgisayarlarda D: kökünde normal kullanıcı klasör açamaz (“erişim reddedildi”). Unity Hub (`D:\Unity`: indirme ve kurulum),
-önbellek (`D:\UnityCache`) ve projeler (`D:\Dev`) için klasörleri yönetici olarak açıp yalnızca bunlarda kendi kullanıcına tam yetki ver.
+Bazı bilgisayarlarda D: kökünde normal kullanıcı klasör açamaz (“erişim reddedildi”). önbellek (`D:\UnityCache`) ve projeler (`D:\Dev`) için klasörleri yönetici olarak açıp yalnızca bunlarda kendi kullanıcına tam yetki ver.
 Normal PowerShell'de (UAC penceresine **Evet**):
 
 ```powershell
 $me = whoami
-Start-Process powershell -Verb RunAs -Wait -ArgumentList "-NoProfile -Command New-Item -ItemType Directory -Force D:\UnityCache\Packages,D:\UnityCache\AssetStore,D:\UnityCache\GiCache,D:\Dev\GameDev,D:\Unity\Editors,D:\Unity\Downloads | Out-Null; icacls D:\UnityCache /grant '${me}:(OI)(CI)F' /T; icacls D:\Dev /grant '${me}:(OI)(CI)F' /T; icacls D:\Unity /grant '${me}:(OI)(CI)F' /T"
+Start-Process powershell -Verb RunAs -Wait -ArgumentList "-NoProfile -Command New-Item -ItemType Directory -Force D:\UnityCache\Packages,D:\UnityCache\AssetStore,D:\UnityCache\GiCache,D:\UnityCache\Editors,D:\UnityCache\Downloads,D:\Dev\GameDev | Out-Null; icacls D:\UnityCache /grant '${me}:(OI)(CI)F' /T; icacls D:\Dev /grant '${me}:(OI)(CI)F' /T"
 ```
 
 `icacls … (OI)(CI)F`: içindeki dosya ve alt klasörlere de geçen tam yetki. Kontrol (normal pencerede, hatasız bitmeli):
@@ -76,8 +77,8 @@ setx UPM_CACHE_ROOT "D:\UnityCache\Packages"
 setx ASSETSTORE_CACHE_PATH "D:\UnityCache\AssetStore"
 ```
 
-> **Neden `D:\Unity` içinde değil?** `D:\Unity`'yi Hub kurulumu yönetici olarak oluşturur; normal kullanıcı (ve Unity)
-> içine yazamaz → “erişim reddedildi”. Önbellek ayrı klasörde durur.
+> **Neden `D:\Unity` içinde değil?** `D:\Unity`'yi Hub kurulumu yönetici olarak oluşturur; normal kullanıcı (ve Hub, Unity)
+> içine yazamaz → “erişim reddedildi” / Hub'da “Download failed”. Editor, indirmeler ve önbellekler `D:\UnityCache`'te.
 
 `setx` kalıcıdır ama yalnızca **yeni açılan** pencereleri etkiler: Hub açıksa kapatıp yeniden aç.
 Kontrol (yeni PowerShell penceresinde): `$env:UPM_CACHE_ROOT` → `D:\UnityCache\Packages`.
@@ -86,10 +87,11 @@ Kontrol (yeni PowerShell penceresinde): `$env:UPM_CACHE_ROOT` → `D:\UnityCache
 
 1. https://unity.com/download → Unity Hub for Windows.
 2. Kurulumda **Destination Folder** → `D:\Unity\Hub`.
-3. Hub'ı aç, Unity hesabınla giriş yap, **Personal** lisansını etkinleştir (ücretsiz).
+3. Hub'ı aç, Unity hesabınla giriş yap.
+   **Lisans:** ⚙ → **Licenses** → **Add** → **Get a free personal license** (Personal, ücretsiz). Lisans olmadan Editor açılmaz.
 4. **Ayarlar (sol alttaki dişli) → Installs**:
-   - **Installs location** → `D:\Unity\Editors`
-   - **Downloads location** → `D:\Unity\Downloads`
+   - **Installs location** → `D:\UnityCache\Editors`
+   - **Downloads location** → `D:\UnityCache\Downloads`
 
    Bunu **Editor'ü kurmadan önce** yap; sonradan değiştirmek kurulu sürümleri taşımaz.
 
@@ -155,7 +157,7 @@ powershell -ExecutionPolicy Bypass -File scripts\check-setup.ps1
 | Belirti | Çözüm |
 | ------- | ----- |
 | C: yine doluyor | `%LOCALAPPDATA%\Unity\cache` ve `%TEMP%` klasörlerini kontrol et; 5. adımı yaptın mı? |
-| Hub: “Download failed: Something went wrong” | `D:\Unity`'ye yazma izni yok → adım 2a, Hub'ı tamamen kapatıp aç, ⟳ |
+| Hub: “Download failed: Something went wrong” | Klasöre yazma izni yok → Installs/Downloads `D:\UnityCache\…` (adım 2a ve 3), Hub'ı tamamen kapatıp aç, ⟳ |
 | Hub 6000.3.25f1'i göstermiyor | Archive sayfasından “Install with Hub” |
 | Gereksiz modül kuruldu (Web, Documentation) | Hub → Installs → sürümün ⚙ menüsü → modülü kaldır |
 | Proje yolu hatası / yavaş import | Yol OneDrive altında veya Türkçe karakterli olmasın (`D:\Dev\GameDev\…` uygun) |

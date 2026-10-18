@@ -44,7 +44,7 @@ $hub = $hubPaths | Where-Object { Test-Path $_ } | Select-Object -First 1
 Show "Unity Hub" ($null -ne $hub) $(if ($hub) { $hub } else { "D:\Unity\Hub'a kur" })
 if ($hub -like "C:*") { Write-Host "      Hub C:'de. Sorun degil ama Editor'leri mutlaka D:'ye kur." -ForegroundColor Yellow }
 
-$editorRoots = "D:\Unity\Editors", "C:\Program Files\Unity\Hub\Editor"
+$editorRoots = "D:\UnityCache\Editors", "D:\Unity\Editors", "C:\Program Files\Unity\Hub\Editor"
 $found = @()
 foreach ($r in $editorRoots) {
     if (Test-Path $r) { Get-ChildItem $r -Directory | ForEach-Object { $found += $_.FullName } }
