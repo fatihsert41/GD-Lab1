@@ -51,7 +51,7 @@ git config --global core.autocrlf true
 ## 2a. D:'de çalışma klasörlerini aç (bir kez, yönetici onayıyla)
 
 Bazı bilgisayarlarda D: kökünde normal kullanıcı klasör açamaz (“erişim reddedildi”). Unity Hub (`D:\Unity`: indirme ve kurulum),
-önbellek (`D:\UnityCache`) ve klasörleri yönetici olarak açıp yalnızca bunlarda kendi kullanıcına tam yetki ver.
+önbellek (`D:\UnityCache`) ve projeler (`D:\Dev`) için klasörleri yönetici olarak açıp yalnızca bunlarda kendi kullanıcına tam yetki ver.
 Normal PowerShell'de (UAC penceresine **Evet**):
 
 ```powershell
