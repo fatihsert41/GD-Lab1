@@ -9,8 +9,8 @@ D:'de en az **20 GB** boş yer olsun (Unity Editor ~7 GB, indirme ~3 GB, proje +
 D:\Unity\
 ├─ Hub\              Unity Hub programı
 ├─ Editors\          Unity Editor sürümleri (6000.6.6f1 buraya)
-├─ Downloads\        Hub'ın indirdiği kurulum dosyaları
-└─ Cache\            Paket, GI ve Asset Store önbellekleri
+└─ Downloads\        Hub'ın indirdiği kurulum dosyaları
+D:\UnityCache\       Paket, GI ve Asset Store önbellekleri (normal kullanıcı yazabilmeli)
 D:\Dev\
 └─ GameDev\
    └─ GD-Lab1\       bu depo (klon)
@@ -55,13 +55,16 @@ Unity, ilk projeyi oluştururken paketleri **global önbelleğe** indirir (varsa
 ayarlıyoruz. PowerShell'de:
 
 ```powershell
-mkdir D:\Unity\Cache\Packages, D:\Unity\Cache\AssetStore -Force
-setx UPM_CACHE_ROOT "D:\Unity\Cache\Packages"
-setx ASSETSTORE_CACHE_PATH "D:\Unity\Cache\AssetStore"
+mkdir D:\UnityCache\Packages, D:\UnityCache\AssetStore, D:\UnityCache\GiCache -Force
+setx UPM_CACHE_ROOT "D:\UnityCache\Packages"
+setx ASSETSTORE_CACHE_PATH "D:\UnityCache\AssetStore"
 ```
 
+> **Neden `D:\Unity` içinde değil?** `D:\Unity`'yi Hub kurulumu yönetici olarak oluşturur; normal kullanıcı (ve Unity)
+> içine yazamaz → “erişim reddedildi”. Önbellek ayrı klasörde durur.
+
 `setx` kalıcıdır ama yalnızca **yeni açılan** pencereleri etkiler: Hub açıksa kapatıp yeniden aç.
-Kontrol (yeni PowerShell penceresinde): `$env:UPM_CACHE_ROOT` → `D:\Unity\Cache\Packages`.
+Kontrol (yeni PowerShell penceresinde): `$env:UPM_CACHE_ROOT` → `D:\UnityCache\Packages`.
 
 ## 3. Unity Hub
 
@@ -90,8 +93,8 @@ farklı yerdeyse ilgili adımda not düşülür. Dikkat: 6.6'da açılan proje 6
 
 Paket ve Asset Store önbellekleri 2b'de ortam değişkeniyle ayarlandı. Kalanlar, ilk proje açıkken **Edit → Preferences**:
 
-- **GI Cache → Cache Folder Location** → `D:\Unity\Cache\GiCache`
-- **Package Manager**: Packages cache location `D:\Unity\Cache\Packages` görünmeli (2b sayesinde)
+- **GI Cache → Cache Folder Location** → `D:\UnityCache\GiCache`
+- **Package Manager**: Packages cache location `D:\UnityCache\Packages` görünmeli (2b sayesinde)
 - **External Tools → External Script Editor** → **Visual Studio Code**
 
 ## 6. Depoyu D:'ye klonla
