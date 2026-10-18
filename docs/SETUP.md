@@ -112,6 +112,14 @@ git status
 `Library/`, `Temp/`, `Logs/` listede **görünmemeli** (`.gitignore` sayesinde); `CipherQuest/Assets`,
 `CipherQuest/Packages`, `CipherQuest/ProjectSettings` görünmeli.
 
+## Kontrol
+
+Ne kurulu, ne eksik görmek için depo klasöründe:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\check-setup.ps1
+```
+
 ## Sık sorunlar
 
 | Belirti | Çözüm |
