@@ -1,0 +1,46 @@
+# Unity projesi depo kökünün bir alt klasöründe (ör. CipherQuest/).
+# "/*/" kalıbı: kökteki her proje klasörünün kendi Library/Temp/... klasörü.
+
+# Unity'nin yeniden üretebildiği klasörler (büyük, asla commit edilmez)
+/*/[Ll]ibrary/
+/*/[Tt]emp/
+/*/[Oo]bj/
+/*/[Ll]ogs/
+/*/[Uu]ser[Ss]ettings/
+/*/[Mm]emoryCaptures/
+/*/[Rr]ecordings/
+
+# Derlemeler (oyun build'leri depoya değil, GitHub Releases'e)
+/*/[Bb]uild/
+/*/[Bb]uilds/
+/[Bb]uilds/
+
+# Unity'nin ürettiği IDE dosyaları
+*.csproj
+*.sln
+*.slnx
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.unityproj
+.vs/
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# Çökme ve hata ayıklama dosyaları
+sysinfo.txt
+crashlytics-build.properties
+*.pdb
+*.mdb
+*.apk
+*.aab
+*.unitypackage
+
+# İşletim sistemi
+.DS_Store
+Thumbs.db
+desktop.ini
