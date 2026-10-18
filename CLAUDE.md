@@ -1,6 +1,6 @@
 # GD-Lab1 — Claude Code notları
 
-CENG462 Game Development dersi Lab 1: **Cipher Quest** (Unity 6.3 LTS 6000.3.25f1, Universal 2D, C#).
+CENG462 Game Development dersi Lab 1: **Cipher Quest** (Unity 6.6 6000.6.6f1, Universal 2D, C#). Kılavuz Unity 6.3 LTS için yazıldı; menü/pencere farkı çıkarsa 6.6 karşılığını göster.
 Geliştirici bilgisayar mühendisliği öğrencisi; amaç öğrenmek. İletişim Türkçe.
 
 - Yol haritası: [docs/ROADMAP.md](docs/ROADMAP.md) — adım bitince kutusu işaretlenir.

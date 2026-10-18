@@ -8,7 +8,7 @@ D:'de en az **20 GB** boş yer olsun (Unity Editor ~7 GB, indirme ~3 GB, proje +
 ```
 D:\Unity\
 ├─ Hub\              Unity Hub programı
-├─ Editors\          Unity Editor sürümleri (6000.3.25f1 buraya)
+├─ Editors\          Unity Editor sürümleri (6000.6.6f1 buraya)
 ├─ Downloads\        Hub'ın indirdiği kurulum dosyaları
 └─ Cache\            Paket, GI ve Asset Store önbellekleri
 D:\Dev\
@@ -74,10 +74,12 @@ Kontrol (yeni PowerShell penceresinde): `$env:UPM_CACHE_ROOT` → `D:\Unity\Cach
 
    Bunu **Editor'ü kurmadan önce** yap; sonradan değiştirmek kurulu sürümleri taşımaz.
 
-## 4. Unity Editor 6000.3.25f1
+## 4. Unity Editor 6000.6.6f1
 
-1. Hub → **Installs → Install Editor**. Listede **6000.3.25f1** yoksa **Archive** sekmesinden ya da
-   https://unity.com/releases/editor/archive üzerinden “Unity 6.3” → 6000.3.25f1 → **Install with Hub**.
+Kılavuz **6.3 LTS (6000.3.25f1)** için yazıldı; biz **6.6 (6000.6.6f1)** kullanıyoruz. Lab'ın konuları aynı; bir menü
+farklı yerdeyse ilgili adımda not düşülür. Dikkat: 6.6'da açılan proje 6.3'te açılmaz (Unity eski sürüme dönüşü desteklemez).
+
+1. Hub → **Installs → Install Editor** → **Unity 6.6 (6000.6.6f1)**.
 2. Modül seçimi:
    - ☐ **Microsoft Visual Studio Community** → **işaretini kaldır** (C:'ye kurulur, VS Code kullanıyoruz).
    - ☑ **Windows Build Support (Mono)** genelde editörle birlikte gelir; Part 10'daki .exe için yeterli.
@@ -106,7 +108,7 @@ GitHub şifre sorarsa: tarayıcıda açılan pencereden giriş yap (Git Credenti
 ## 7. Unity projesini oluştur (Part 1.1)
 
 1. Hub → **Projects → New project**.
-2. Üstte editör sürümü **6000.3.25f1**.
+2. Üstte editör sürümü **6000.6.6f1**.
 3. Şablon: **Universal 2D**.
 4. **Project name:** `CipherQuest` — **Location:** `D:\Dev\GameDev\GD-Lab1`.
 5. Unity Cloud / Version Control seçenekleri **kapalı** (git kullanıyoruz). **Create project**.
@@ -137,6 +139,6 @@ powershell -ExecutionPolicy Bypass -File scripts\check-setup.ps1
 | Belirti | Çözüm |
 | ------- | ----- |
 | C: yine doluyor | `%LOCALAPPDATA%\Unity\cache` ve `%TEMP%` klasörlerini kontrol et; 5. adımı yaptın mı? |
-| Hub 6000.3.25f1'i göstermiyor | Archive sayfasından “Install with Hub” |
+| Gereksiz modül kuruldu (Web, Documentation) | Hub → Installs → sürümün ⚙ menüsü → modülü kaldır |
 | Proje yolu hatası / yavaş import | Yol OneDrive altında veya Türkçe karakterli olmasın (`D:\Dev\GameDev\…` uygun) |
 | VS Code'da IntelliSense yok | Unity'de External Script Editor = VS Code, sonra **Assets → Open C# Project** |

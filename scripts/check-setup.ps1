@@ -49,7 +49,7 @@ $found = @()
 foreach ($r in $editorRoots) {
     if (Test-Path $r) { Get-ChildItem $r -Directory | ForEach-Object { $found += $_.FullName } }
 }
-Show "Unity 6000.3.25f1" (($found | Where-Object { $_ -like "*6000.3.25f1" }).Count -gt 0) ""
+Show "Unity 6000.6.6f1" (($found | Where-Object { $_ -like "*6000.6.6f1" }).Count -gt 0) ""
 foreach ($f in $found) { Write-Host "      kurulu: $f" }
 if ($found | Where-Object { $_ -like "C:*" }) {
     Write-Host "      C:'de Unity Editor var; yer acmak icin Hub'dan kaldirabilirsin." -ForegroundColor Yellow
