@@ -50,13 +50,13 @@ git config --global core.autocrlf true
 
 ## 2a. D:'de çalışma klasörlerini aç (bir kez, yönetici onayıyla)
 
-Bazı bilgisayarlarda D: kökünde normal kullanıcı klasör açamaz (“erişim reddedildi”). Önbellek (`D:\UnityCache`) ve
-projeler (`D:\Dev`) için klasörleri yönetici olarak açıp yalnızca bu ikisinde kendi kullanıcına tam yetki ver.
+Bazı bilgisayarlarda D: kökünde normal kullanıcı klasör açamaz (“erişim reddedildi”). Unity Hub (`D:\Unity`: indirme ve kurulum),
+önbellek (`D:\UnityCache`) ve klasörleri yönetici olarak açıp yalnızca bunlarda kendi kullanıcına tam yetki ver.
 Normal PowerShell'de (UAC penceresine **Evet**):
 
 ```powershell
 $me = whoami
-Start-Process powershell -Verb RunAs -Wait -ArgumentList "-NoProfile -Command New-Item -ItemType Directory -Force D:\UnityCache\Packages,D:\UnityCache\AssetStore,D:\UnityCache\GiCache,D:\Dev\GameDev | Out-Null; icacls D:\UnityCache /grant '${me}:(OI)(CI)F' /T; icacls D:\Dev /grant '${me}:(OI)(CI)F' /T"
+Start-Process powershell -Verb RunAs -Wait -ArgumentList "-NoProfile -Command New-Item -ItemType Directory -Force D:\UnityCache\Packages,D:\UnityCache\AssetStore,D:\UnityCache\GiCache,D:\Dev\GameDev,D:\Unity\Editors,D:\Unity\Downloads | Out-Null; icacls D:\UnityCache /grant '${me}:(OI)(CI)F' /T; icacls D:\Dev /grant '${me}:(OI)(CI)F' /T; icacls D:\Unity /grant '${me}:(OI)(CI)F' /T"
 ```
 
 `icacls … (OI)(CI)F`: içindeki dosya ve alt klasörlere de geçen tam yetki. Kontrol (normal pencerede, hatasız bitmeli):
@@ -157,6 +157,7 @@ powershell -ExecutionPolicy Bypass -File scripts\check-setup.ps1
 | Belirti | Çözüm |
 | ------- | ----- |
 | C: yine doluyor | `%LOCALAPPDATA%\Unity\cache` ve `%TEMP%` klasörlerini kontrol et; 5. adımı yaptın mı? |
+| Hub: “Download failed: Something went wrong” | `D:\Unity`'ye yazma izni yok → adım 2a, Hub'ı tamamen kapatıp aç, ⟳ |
 | Gereksiz modül kuruldu (Web, Documentation) | Hub → Installs → sürümün ⚙ menüsü → modülü kaldır |
 | Proje yolu hatası / yavaş import | Yol OneDrive altında veya Türkçe karakterli olmasın (`D:\Dev\GameDev\…` uygun) |
 | VS Code'da IntelliSense yok | Unity'de External Script Editor = VS Code, sonra **Assets → Open C# Project** |
