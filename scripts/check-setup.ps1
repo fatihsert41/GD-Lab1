@@ -35,6 +35,10 @@ if ($code) {
 }
 
 Write-Host "`n== Unity ==" -ForegroundColor Cyan
+$upm = [Environment]::GetEnvironmentVariable("UPM_CACHE_ROOT", "User")
+Show "UPM_CACHE_ROOT (paketler)" ($upm -like "D:*") $(if ($upm) { $upm } else { "SETUP.md adim 2b" })
+$asc = [Environment]::GetEnvironmentVariable("ASSETSTORE_CACHE_PATH", "User")
+Show "ASSETSTORE_CACHE_PATH" ($asc -like "D:*") $(if ($asc) { $asc } else { "SETUP.md adim 2b" })
 $hubPaths = "D:\Unity\Hub\Unity Hub.exe", "C:\Program Files\Unity Hub\Unity Hub.exe"
 $hub = $hubPaths | Where-Object { Test-Path $_ } | Select-Object -First 1
 Show "Unity Hub" ($null -ne $hub) $(if ($hub) { $hub } else { "D:\Unity\Hub'a kur" })

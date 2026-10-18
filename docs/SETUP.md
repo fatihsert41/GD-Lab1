@@ -12,8 +12,6 @@ D:\Unity\
 ├─ Downloads\        Hub'ın indirdiği kurulum dosyaları
 └─ Cache\            Paket, GI ve Asset Store önbellekleri
 D:\Dev\
-├─ Git\              Git for Windows
-├─ VSCode\           Visual Studio Code
 └─ GameDev\
    └─ GD-Lab1\       bu depo (klon)
       ├─ docs\
@@ -27,7 +25,7 @@ D:\Dev\
 ## 1. Git for Windows
 
 1. https://git-scm.com/download/win → 64-bit installer.
-2. Kurulumda **Select Destination Location** → `D:\Dev\Git`.
+2. Kurulumda **Select Destination Location** → D: altında bir klasör (ör. `D:\Git`).
 3. Varsayılan editör sorusunda **Visual Studio Code**'u seç (VS Code'u önce kurarsan listede çıkar; sonra da değiştirilebilir).
 4. Kalan seçenekler varsayılan. Kurulumdan sonra PowerShell'de:
 
@@ -42,13 +40,28 @@ git config --global core.autocrlf true
 ## 2. Visual Studio Code (kod editörü)
 
 1. https://code.visualstudio.com → **User Installer** (x64). User installer yönetici izni istemez ve konumu seçmene izin verir.
-2. Konum: `D:\Dev\VSCode`.
+2. Konum: D: altında bir klasör. (Zaten C:'de kuruluysa bırak: ~400 MB, taşımaya değmez.)
 3. VS Code'da Extensions (`Ctrl+Shift+X`) → **Unity** (Microsoft) eklentisini kur. Bu, **C# Dev Kit** ve **C#** eklentilerini de getirir.
 4. C# Dev Kit, **.NET SDK** ister; eklenti eksikse kurmayı önerir. .NET SDK `C:\Program Files\dotnet`'e kurulur
    (~700 MB) ve konumu değiştirilemez; C:'de tek kalacak parça bu.
 
 > Alternatif: **JetBrains Rider** öğrenciler / ticari olmayan kullanım için ücretsiz ve tamamen D:'ye kurulabilir,
 > ama daha ağır. **Visual Studio Community** önerilmez: büyük kısmı C:'ye kurulur.
+
+## 2b. Unity önbelleklerini Hub'dan önce D:'ye yönlendir
+
+Unity, ilk projeyi oluştururken paketleri **global önbelleğe** indirir (varsayılan `C:\Users\<ad>\AppData\Local\Unity\cache`,
+1–2 GB ve büyür). Preferences menüsüne ancak proje açıldıktan sonra girilebildiği için, bunu **ortam değişkeniyle** önceden
+ayarlıyoruz. PowerShell'de:
+
+```powershell
+mkdir D:\Unity\Cache\Packages, D:\Unity\Cache\AssetStore -Force
+setx UPM_CACHE_ROOT "D:\Unity\Cache\Packages"
+setx ASSETSTORE_CACHE_PATH "D:\Unity\Cache\AssetStore"
+```
+
+`setx` kalıcıdır ama yalnızca **yeni açılan** pencereleri etkiler: Hub açıksa kapatıp yeniden aç.
+Kontrol (yeni PowerShell penceresinde): `$env:UPM_CACHE_ROOT` → `D:\Unity\Cache\Packages`.
 
 ## 3. Unity Hub
 
@@ -73,11 +86,10 @@ git config --global core.autocrlf true
 
 ## 5. Unity önbelleklerini D:'ye al
 
-Herhangi bir proje açıkken **Edit → Preferences** (ilk projeyi oluşturduktan sonra yap):
+Paket ve Asset Store önbellekleri 2b'de ortam değişkeniyle ayarlandı. Kalanlar, ilk proje açıkken **Edit → Preferences**:
 
 - **GI Cache → Cache Folder Location** → `D:\Unity\Cache\GiCache`
-- **Package Manager → Packages → Cache location** → `D:\Unity\Cache\Packages`
-- **Package Manager → My Assets (Asset Store) → Cache location** → `D:\Unity\Cache\AssetStore`
+- **Package Manager**: Packages cache location `D:\Unity\Cache\Packages` görünmeli (2b sayesinde)
 - **External Tools → External Script Editor** → **Visual Studio Code**
 
 ## 6. Depoyu D:'ye klonla
