@@ -49,6 +49,11 @@ QUIT (StartMenu'de) oyunu kapatır.
 - [ ] **Unity'de doğrulama:** menü **Cipher Quest → 1. Sahneleri kur**, Play ile tam tur, [Tablo 7 testleri](REFLECTION.md#test-planı-tablo-7), **2. Windows build al**, sahneleri commit
 - [x] **Wrap-up:** [REFLECTION.md](REFLECTION.md) (tamamlama listesi, test planı, 7 sorunun cevabı)
 
+## Sonraki lab'lar
+
+- [x] **Lab 2 — Glimmer Grotto, part 1:** `GlimmerGrotto/` projesi, menü **Glimmer Grotto → 1. Lab 2'yi kur**, [docs/lab2/README.md](lab2/README.md)
+- [ ] **Lab 3 — Glimmer Grotto, part 2:** animasyon, Animator Controller, 2D çarpışma
+
 ## Bu labda öğrenilecek kavramlar
 
 | Kavram | Nerede | Kısaca |

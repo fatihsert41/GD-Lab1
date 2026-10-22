@@ -1,4 +1,14 @@
-# GD-Lab1 — Cipher Quest
+# CENG462 Game Development — Lab'lar
+
+| Lab | Proje | Belge |
+| --- | ----- | ----- |
+| 1 — Cipher Quest | [`CipherQuest/`](CipherQuest/) | bu sayfa, [docs/REFLECTION.md](docs/REFLECTION.md) |
+| 2 — Glimmer Grotto, part 1 (tilemap, rule tile) | [`GlimmerGrotto/`](GlimmerGrotto/) | [docs/lab2/README.md](docs/lab2/README.md) |
+| 3 — Glimmer Grotto, part 2 (animasyon, çarpışma) | [`GlimmerGrotto/`](GlimmerGrotto/) | sırada |
+
+---
+
+# Lab 1 — Cipher Quest
 
 CENG462 Game Development (Fall 2026–2027), Lab 1. Unity 6.3 LTS (6000.3.25f1), Universal 2D.
 
