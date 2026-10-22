@@ -65,6 +65,10 @@ Menü **Glimmer Grotto → 1. Lab 2'yi kur** Part 1–6'yı uygular: içe aktarm
 yukarıdaki bölüm ve Platforms üzerinde `GroundPainter` (bileşenin ⋮ menüsü → **Paint Ground**, bölümün sağındaki
 boş alana boyar).
 
+> **Not:** Sahne şablonundaki **Global Light 2D** yalnızca *Default* katmanını aydınlatır. URP 2D'de ışık almayan
+> sprite siyah görünür; araç ışığın **Target Sorting Layers** ayarını bütün katmanlara (All) çevirir. Elle:
+> Global Light 2D → Light 2D → Target Sorting Layers → **All**.
+
 ## Tamamlama listesi
 
 - [x] Bütün sprite'lar Point ve Compression None; karolar ve karakter 32 PPU, kapı 64 PPU

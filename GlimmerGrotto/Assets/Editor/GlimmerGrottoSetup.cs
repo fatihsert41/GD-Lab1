@@ -472,6 +472,10 @@ public static class GlimmerGrottoSetup
             camera.backgroundColor = Color.black;
         }
 
+        // Global Light 2D: şablonda yalnızca Default katmanını aydınlatıyor. URP 2D'de ışık almayan
+        // sprite siyah çizilir; bu yüzden ışığı bütün sorting layer'lara uygula.
+        LightAllSortingLayers(Find(scene, "Global Light 2D"));
+
         foreach (GameObject root in scene.GetRootGameObjects())
         {
             foreach (Component component in root.GetComponentsInChildren<Component>(true))
@@ -504,6 +508,35 @@ public static class GlimmerGrottoSetup
         renderer.sortingLayerName = name;  // her tilemap kendi sorting layer'ında
         renderer.sortingOrder = 0;
         return go.GetComponent<Tilemap>();
+    }
+
+    static void LightAllSortingLayers(GameObject lightObject)
+    {
+        if (lightObject == null)
+        {
+            Debug.LogWarning("Global Light 2D bulunamadı.");
+            return;
+        }
+        foreach (Component component in lightObject.GetComponents<Component>())
+        {
+            if (component == null || component.GetType().Name != "Light2D")
+            {
+                continue;
+            }
+            var so = new SerializedObject(component);
+            SerializedProperty targets = so.FindProperty("m_ApplyToSortingLayers");
+            if (targets == null || !targets.isArray)
+            {
+                continue;
+            }
+            SortingLayer[] layers = SortingLayer.layers;
+            targets.arraySize = layers.Length;
+            for (int i = 0; i < layers.Length; i++)
+            {
+                targets.GetArrayElementAtIndex(i).intValue = layers[i].id;
+            }
+            so.ApplyModifiedPropertiesWithoutUndo();
+        }
     }
 
     // ---------------------------------------------------------------- yardımcılar
