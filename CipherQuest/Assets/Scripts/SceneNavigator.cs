@@ -1,9 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;  // SceneManager sınıfı buradan gelir
 
+// ------------------------------------------------------------------
+// Cipher Quest - SceneNavigator
 // Oyuncuyu File > Build Profiles > Scene List'teki sahneler arasında taşır.
 // Boş bir "SceneNavigator" nesnesine eklenir; metotları düğmelerin
 // On Click () listesinden çağrılır.
+// ------------------------------------------------------------------
 public class SceneNavigator : MonoBehaviour
 {
     // StartMenu her zaman listenin başında (index 0).
@@ -31,5 +34,18 @@ public class SceneNavigator : MonoBehaviour
     public void LoadStartScene()
     {
         SceneManager.LoadScene(StartSceneIndex);
+    }
+
+    // QUIT: oyunu kapatır.
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        // Application.Quit() Editor'de yok sayılır; bu yüzden Play Mode'u durdur.
+        // Bu satır yalnızca Editor'de vardır (koşullu derleme).
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        // Gerçek bir build'de (Windows, macOS, Linux) oyunu kapatır.
+        Application.Quit();
+#endif
     }
 }

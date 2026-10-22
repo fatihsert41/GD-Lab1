@@ -42,14 +42,12 @@ QUIT (StartMenu'de) oyunu kapatır.
 
 - [x] **PR 0** — Depo kurulumu ve yol haritası
 - [x] **Kurulum** — D:'de Unity Hub + Unity 6000.3.25f1 (`D:\UnityCache`) + VS Code + Git, depo `D:\Dev\GameDev\GD-Lab1`
-- [x] **PR 1 — Part 1:** `CipherQuest` projesi; `StartMenu` sahnesi; Canvas Scaler 1920×1080 Scale With Screen Size; StartButton middle-right, CodebreakerFatih bottom-left
-- [ ] **PR 2 — Part 0 + 2:** `DESIGN.md` dolduruldu; StartText (TMP), font asset (`Assets/Fonts`), düğme Color Tint renkleri; `CoreGame` ve `WinScreen` sahneleri
-- [ ] **PR 3 — Part 3–4:** Scene List 0/1/2; `SceneNavigator` (`LoadNextScene`, `LoadStartScene`); tam döngü hatasız
-- [ ] **PR 4 — Part 5:** CoreGame'de Tablo 3'teki 8 öğe, doğru isim ve parent–child
-- [ ] **PR 5 — Part 6–7:** `Codebreaker.cs` (settings/state ayrımı, `OnPressHigher/Lower`), `Gameplay` objesi, ekranda tahmin
-- [ ] **PR 6 — Part 8–9:** Rastgele tahmin, uçlar (1 ve 1000) ulaşılabilir, deneme sayacı, çelişki mesajı, Tablo 7 testleri
-- [ ] **PR 7 — Part 10:** QuitGame (`#if UNITY_EDITOR`), kamera arka planı, IntroText/WinText, build çalışıyor
-- [ ] **PR 8 — Wrap-up:** Tamamlama listesi, yansıma soruları, (isteğe bağlı) ekstra görevler
+- [x] **Part 1** (PR #2): `StartMenu`, Canvas Scaler 1920×1080, StartButton right-middle, CodebreakerFatih left-bottom
+- [x] **Part 2** (PR #4): TMP yazılar, Color Tint renkleri, `CoreGame` ve `WinScreen` (font adımı atlandı)
+- [x] **Part 3–4** (PR #5): Scene List 0/1/2, `SceneNavigator`, tam döngü
+- [x] **Part 5–10** (`claude/kind-feynman-q8ym9h`): `Codebreaker.cs` son hali, `SceneNavigator.QuitGame`, kurulum aracı `Assets/Editor/CipherQuestSetup.cs` (CoreGame arayüzü, Gameplay + referanslar, On Click bağlantıları, QUIT, IntroText/WinText, kamera rengi, Player Settings, build)
+- [ ] **Unity'de doğrulama:** menü **Cipher Quest → 1. Sahneleri kur**, Play ile tam tur, [Tablo 7 testleri](REFLECTION.md#test-planı-tablo-7), **2. Windows build al**, sahneleri commit
+- [x] **Wrap-up:** [REFLECTION.md](REFLECTION.md) (tamamlama listesi, test planı, 7 sorunun cevabı)
 
 ## Bu labda öğrenilecek kavramlar
 
