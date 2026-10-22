@@ -401,6 +401,7 @@ public static class CipherQuestSetup
         if (button.targetGraphic != null)
         {
             button.targetGraphic.color = Color.white;  // Color Tint, Image rengini bu renklerle çarpar
+            button.targetGraphic.raycastTarget = true; // fare düğmeyi ancak bununla "görür"
         }
         ColorBlock colors = button.colors;
         colors.normalColor = normal;
