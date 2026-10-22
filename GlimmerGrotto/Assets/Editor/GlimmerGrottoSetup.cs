@@ -95,6 +95,9 @@ public static partial class GlimmerGrottoSetup
     // örtüşme sayesinde o piksel her iki karonun da içinde kalır.
     const float SeamFixScale = 1.002f;
 
+    [MenuItem("Glimmer Grotto/1. Lab 2'yi kur", true)]
+    static bool CanSetupLab2() => !EditorApplication.isPlayingOrWillChangePlaymode;  // Play modunda menü gri
+
     [MenuItem("Glimmer Grotto/1. Lab 2'yi kur")]
     public static void SetupLab2()
     {

@@ -31,6 +31,9 @@ public static partial class GlimmerGrottoSetup
     // Satırlar: shoot 0-4, idle 5-8, roll 9-13, climb 14-15, jump 16-18, run 19-28
     const string PlayerSheet = "SPA_Player_Bronze";
 
+    [MenuItem("Glimmer Grotto/2. Lab 3'ü kur", true)]
+    static bool CanSetupLab3() => !EditorApplication.isPlayingOrWillChangePlaymode;  // Play modunda menü gri
+
     [MenuItem("Glimmer Grotto/2. Lab 3'ü kur")]
     public static void SetupLab3()
     {

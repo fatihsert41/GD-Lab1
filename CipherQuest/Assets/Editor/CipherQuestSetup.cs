@@ -33,6 +33,12 @@ public static class CipherQuestSetup
     static readonly Color DarkText = Hex("101820");
     static readonly Color MutedText = Hex("8FA3B8");
 
+    [MenuItem("Cipher Quest/1. Sahneleri kur (Part 5-10)", true)]
+    static bool CanSetupAll() => !EditorApplication.isPlayingOrWillChangePlaymode;  // Play modunda menü gri
+
+    [MenuItem("Cipher Quest/2. Windows build al", true)]
+    static bool CanBuildWindows() => !EditorApplication.isPlayingOrWillChangePlaymode;  // Play modunda menü gri
+
     [MenuItem("Cipher Quest/1. Sahneleri kur (Part 5-10)")]
     public static void SetupAll()
     {
