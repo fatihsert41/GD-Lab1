@@ -286,6 +286,17 @@ public static class CipherQuestSetup
 
     static bool Save(Scene scene)
     {
+        // Koddan yapılan her değişikliği Unity'ye "değişti" olarak bildir, yoksa kayda girmeyebilir.
+        foreach (GameObject root in scene.GetRootGameObjects())
+        {
+            foreach (Component component in root.GetComponentsInChildren<Component>(true))
+            {
+                if (component != null)
+                {
+                    EditorUtility.SetDirty(component);
+                }
+            }
+        }
         EditorSceneManager.MarkSceneDirty(scene);
         return EditorSceneManager.SaveScene(scene);
     }
@@ -433,6 +444,8 @@ public static class CipherQuestSetup
     {
         ClearListeners(button);
         UnityEventTools.AddPersistentListener(button.onClick, action);
+        button.onClick.SetPersistentListenerState(0, UnityEventCallState.RuntimeOnly);
+        EditorUtility.SetDirty(button);
     }
 
     static SceneNavigator EnsureNavigator(Scene scene)
