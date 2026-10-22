@@ -65,9 +65,18 @@ Menü **Glimmer Grotto → 1. Lab 2'yi kur** Part 1–6'yı uygular: içe aktarm
 yukarıdaki bölüm ve Platforms üzerinde `GroundPainter` (bileşenin ⋮ menüsü → **Paint Ground**, bölümün sağındaki
 boş alana boyar).
 
-> **Not:** Sahne şablonundaki **Global Light 2D** yalnızca *Default* katmanını aydınlatır. URP 2D'de ışık almayan
-> sprite siyah görünür; araç ışığın **Target Sorting Layers** ayarını bütün katmanlara (All) çevirir. Elle:
-> Global Light 2D → Light 2D → Target Sorting Layers → **All**.
+### Sahne ayrıntıları
+
+- **Bölüm** 48 × 27 karo (16:9). Kamera (orthographic size 13,5) tam olarak bu alanı gösterir. Haritanın kenarındaki
+  kaya, görüş alanının 2 karo dışına uzar; böylece rule tile kenarlarda çimen ya da dış yüz çizmez.
+- **Işık:** Sahne şablonundaki *Global Light 2D* yalnızca *Default* katmanını aydınlatır. URP 2D'de ışık almayan
+  sprite siyah görünür; araç **Target Sorting Layers**'ı bütün katmanlara (All) çevirir.
+- **Karo arası çizgiler:** Sheet'lerdeki 6 piksellik boşluklar şeffaf. Ekran ölçeği tam sayı değilken bir karo kenarı
+  tam bir piksel merkezine denk gelirse Unity o boşluktan örnek alır ve ince siyah bir çizgi görünür (kılavuz Ek D).
+  Araç her tilemap'te **Orientation: Custom, Scale 1.002** kullanır: karolar komşularıyla piksel altı ölçüde örtüşür
+  (0,001 birim, 32 PPU'da 0,03 piksel), o piksel her iki karonun da içinde kalır ve çizgi oluşmaz. Kılavuzun
+  önerdiği Sprite Atlas boşluğu yine şeffaf bırakabildiği için bu yol seçildi; ileride Pixel Perfect Camera gelince
+  gerek kalmaz.
 
 ## Tamamlama listesi
 

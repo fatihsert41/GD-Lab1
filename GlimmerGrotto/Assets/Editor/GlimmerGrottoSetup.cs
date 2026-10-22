@@ -56,26 +56,44 @@ public static class GlimmerGrottoSetup
     };
 
     // Bölüm: '#' kaya (GrottoRuleTile), 'w' su, '.' boş. Yukarıdan aşağı satırlar.
+    // 48 x 27 karo = 16:9; kamera tam olarak bu alanı gösterir.
     static readonly string[] LevelMap =
     {
-        "..............................................",
-        "..............................................",
-        "..............................................",
-        ".............................#######..........",
-        "..............................................",
-        "...........####...............................",
-        ".........................#....................",
-        ".......................#####..............###.",
-        "######.................#####.....##.......###.",
-        "######....#####.................####....#####.",
-        "######....#...#..........#.....######...#####.",
-        "#######wwww#####...###.........######...######",
+        "################################################",
+        "################################################",
+        "#####...#######....#####################..######",
+        "####.....#####......####.##########.###....#####",
+        "###.......###........##...########...#......####",
+        "##.........#.........#.....######.............##",
+        "#..........#.................###...............#",
+        "#.............................#................#",
+        "#..............................................#",
+        "#..............................................#",
+        "#.......................................####...#",
+        "#..............................................#",
+        "#..####........................................#",
+        "#..............................................#",
+        "#..............................................#",
+        "#.............................#######..........#",
+        "#..............................................#",
+        "#...........####...............................#",
+        "#.........................#....................#",
+        "#.......................#####..............#####",
+        "######..................#####.....##.......#####",
+        "######....#####..................####....#######",
+        "######....#...#..........#......######...#######",
+        "#######wwww#####...###..........######...#######",
         "#######wwww#####...###...#######################",
         "################...###...#######################",
         "################wwwwwwwwww######################",
     };
     const int LevelLeft = -23;   // haritanın sol sütunu (x)
     const int LevelBottom = -8;  // haritanın alt satırı (y)
+    const int EdgePadding = 2;   // kenardaki kaya, görüş alanının dışına bu kadar uzar
+    // Karoları %0,2 büyüt: komşularla piksel altı örtüşme. Karo kenarı tam bir piksel merkezine
+    // denk geldiğinde Unity sheet'teki şeffaf boşluktan örnek alır ve siyah bir çizgi çıkar;
+    // örtüşme sayesinde o piksel her iki karonun da içinde kalır.
+    const float SeamFixScale = 1.002f;
 
     [MenuItem("Glimmer Grotto/1. Lab 2'yi kur")]
     public static void SetupLab2()
@@ -303,7 +321,7 @@ public static class GlimmerGrottoSetup
 
     static RuleTile MakeRuleTile(Dictionary<string, Sprite> terrain)
     {
-        Sprite S(int i) => terrain[Terrain + "_" + i];
+        System.Func<int, Sprite> S = i => terrain[Terrain + "_" + i];
         const RuleTile.TilingRuleOutput.Transform Fixed = RuleTile.TilingRuleOutput.Transform.Fixed;
         const RuleTile.TilingRuleOutput.Transform MirrorX = RuleTile.TilingRuleOutput.Transform.MirrorX;
         const RuleTile.TilingRuleOutput.Transform Rotated = RuleTile.TilingRuleOutput.Transform.Rotated;
@@ -414,9 +432,9 @@ public static class GlimmerGrottoSetup
 
         // Arka plan: duvar taşları her sırayla yan yana gelebilir
         var random = new System.Random(462);
-        for (int x = LevelLeft - 2; x < LevelLeft + width + 30; x++)
+        for (int x = LevelLeft - 6; x < LevelLeft + width + 32; x++)
         {
-            for (int y = LevelBottom - 2; y < LevelBottom + height + 2; y++)
+            for (int y = LevelBottom - 6; y < LevelBottom + height + 6; y++)
             {
                 background.SetTile(new Vector3Int(x, y, 0), bg[random.Next(bg.Length)]);
             }
@@ -436,8 +454,27 @@ public static class GlimmerGrottoSetup
                 }
                 else if (line[col] == 'w')
                 {
-                    bool waterAbove = row > 0 && col < LevelMap[row - 1].Length && LevelMap[row - 1][col] == 'w';
+                    bool waterAbove = row > 0 && LevelMap[row - 1][col] == 'w';
                     water.SetTile(cell, waterAbove ? t[28] : t[29]);  // 29 yüzey, 28 derin su
+                }
+            }
+        }
+
+        // Kenar dolgusu: haritanın kenarındaki kaya, kameranın dışına EdgePadding karo uzar.
+        // Böylece rule tile kenarda "boşluk" görüp çimen ya da dış yüz çizmez.
+        for (int col = -EdgePadding; col < width + EdgePadding; col++)
+        {
+            for (int row = -EdgePadding; row < height + EdgePadding; row++)
+            {
+                if (col >= 0 && col < width && row >= 0 && row < height)
+                {
+                    continue;  // haritanın içi zaten boyandı
+                }
+                int edgeCol = Mathf.Clamp(col, 0, width - 1);
+                int edgeRow = Mathf.Clamp(row, 0, height - 1);
+                if (LevelMap[edgeRow][edgeCol] == '#')
+                {
+                    platforms.SetTile(new Vector3Int(LevelLeft + col, LevelBottom + (height - 1 - row), 0), ruleTile);
                 }
             }
         }
@@ -452,7 +489,7 @@ public static class GlimmerGrottoSetup
         var so = new SerializedObject(painter);
         so.FindProperty("targetTilemap").objectReferenceValue = platforms;
         so.FindProperty("groundTile").objectReferenceValue = ruleTile;
-        so.FindProperty("firstColumn").intValue = LevelLeft + width + 2;
+        so.FindProperty("firstColumn").intValue = LevelLeft + width + EdgePadding + 2;
         so.FindProperty("columns").intValue = 26;
         so.FindProperty("bottomRow").intValue = LevelBottom;
         so.FindProperty("startHeight").intValue = LevelBottom + 3;
@@ -466,8 +503,9 @@ public static class GlimmerGrottoSetup
         if (camera != null)
         {
             camera.orthographic = true;
-            camera.orthographicSize = 8f;
-            camera.transform.position = new Vector3(0f, LevelBottom + height / 2f, -10f);
+            // 16:9 ekranda 48 x 27 karonun tamamı: yükseklik / 2
+            camera.orthographicSize = height / 2f;
+            camera.transform.position = new Vector3(LevelLeft + width / 2f, LevelBottom + height / 2f, -10f);
             camera.clearFlags = CameraClearFlags.SolidColor;
             camera.backgroundColor = Color.black;
         }
@@ -507,7 +545,11 @@ public static class GlimmerGrottoSetup
         TilemapRenderer renderer = go.GetComponent<TilemapRenderer>();
         renderer.sortingLayerName = name;  // her tilemap kendi sorting layer'ında
         renderer.sortingOrder = 0;
-        return go.GetComponent<Tilemap>();
+
+        Tilemap tilemap = go.GetComponent<Tilemap>();
+        tilemap.orientation = Tilemap.Orientation.Custom;
+        tilemap.orientationMatrix = Matrix4x4.Scale(new Vector3(SeamFixScale, SeamFixScale, 1f));
+        return tilemap;
     }
 
     static void LightAllSortingLayers(GameObject lightObject)
