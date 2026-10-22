@@ -18,7 +18,7 @@ using UnityEngine.Tilemaps;
 //   Part 6: Platforms üzerinde GroundPainter (sağdaki boş alana boyar)
 // Birden çok kez çalıştırılabilir; var olanları günceller.
 // ------------------------------------------------------------------
-public static class GlimmerGrottoSetup
+public static partial class GlimmerGrottoSetup
 {
     const string SpritesFolder = "Assets/Sprites";
     const string TilesFolder = "Assets/Tiles";

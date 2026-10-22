@@ -4,7 +4,7 @@
 | --- | ----- | ----- |
 | 1 — Cipher Quest | [`CipherQuest/`](CipherQuest/) | bu sayfa, [docs/REFLECTION.md](docs/REFLECTION.md) |
 | 2 — Glimmer Grotto, part 1 (tilemap, rule tile) | [`GlimmerGrotto/`](GlimmerGrotto/) | [docs/lab2/README.md](docs/lab2/README.md) |
-| 3 — Glimmer Grotto, part 2 (animasyon, çarpışma) | [`GlimmerGrotto/`](GlimmerGrotto/) | sırada |
+| 3 — Glimmer Grotto, part 2 (animasyon, çarpışma) | [`GlimmerGrotto/`](GlimmerGrotto/) | [docs/lab3/README.md](docs/lab3/README.md) |
 
 ---
 

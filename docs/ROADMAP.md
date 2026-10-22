@@ -52,7 +52,7 @@ QUIT (StartMenu'de) oyunu kapatır.
 ## Sonraki lab'lar
 
 - [x] **Lab 2 — Glimmer Grotto, part 1:** `GlimmerGrotto/` projesi, menü **Glimmer Grotto → 1. Lab 2'yi kur**, [docs/lab2/README.md](lab2/README.md)
-- [ ] **Lab 3 — Glimmer Grotto, part 2:** animasyon, Animator Controller, 2D çarpışma
+- [x] **Lab 3 — Glimmer Grotto, part 2:** menü **Glimmer Grotto → 2. Lab 3'ü kur**, [docs/lab3/README.md](lab3/README.md)
 
 ## Bu labda öğrenilecek kavramlar
 
