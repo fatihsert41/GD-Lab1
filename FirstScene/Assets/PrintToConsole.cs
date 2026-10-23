@@ -5,7 +5,7 @@ public class PrintToConsole : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Beep boop! I am Fatih's robot.");
+        Debug.Log("Grrr! I am Fatih's first character.");
 
     }
 }
