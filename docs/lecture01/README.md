@@ -33,5 +33,5 @@ Ağız yarım daire: koyu bir elipsin üst yarısını kafa renginde bir kare (M
 ## Hocaya gösterme (Before you leave)
 
 1. Unity Hub → **Add ▾ → Add project from disk** → `GD-Lab1\FirstScene`. İlk açılış birkaç dakika sürer (paketler içe aktarılır).
-2. Project penceresinde **Assets › Scenes › FirstScene**'e çift tıkla → robot Scene ve Game görünümünde.
+2. Project penceresinde **Assets › Scenes › FirstScene**'e çift tıkla → karakter Scene ve Game görünümünde.
 3. **Play** → Console: `Grrr! I am Fatih's first character.`
