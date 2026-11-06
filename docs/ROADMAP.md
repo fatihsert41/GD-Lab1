@@ -53,6 +53,7 @@ QUIT (StartMenu'de) oyunu kapatır.
 
 - [x] **Lab 2 — Glimmer Grotto, part 1:** `GlimmerGrotto/` projesi, menü **Glimmer Grotto → 1. Lab 2'yi kur**, [docs/lab2/README.md](lab2/README.md)
 - [x] **Lab 3 — Glimmer Grotto, part 2:** menü **Glimmer Grotto → 2. Lab 3'ü kur**, [docs/lab3/README.md](lab3/README.md)
+- [x] **Lab 4 — Glimmer Grotto, part 3:** `PlayerMovement` (Player Input, koşma, yön çevirme, zıplama, Ground katmanı), menü **Glimmer Grotto → 3. Lab 4'ü kur**, [docs/lab4/README.md](lab4/README.md)
 - [x] **Lecture 01 — Activity 1–2:** `FirstScene/` projesi (slayttaki örnek karakter, PrintToConsole), [docs/lecture01/README.md](lecture01/README.md)
 
 ## Bu labda öğrenilecek kavramlar
